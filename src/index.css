@@ -33,6 +33,12 @@
     --color-accent-hover-light: #1461ba;
     --color-accent-hover-dark: #d97706;
     
+    /* Success/Available colors - Green for both modes */
+    --color-success-light: #10b981;
+    --color-success-dark: #34d399;
+    --color-success-hover-light: #059669;
+    --color-success-hover-dark: #10b981;
+    
     /* Text colors */
     --color-text-primary-light: #171717;
     --color-text-primary-dark: #f5f5f5;
@@ -96,6 +102,8 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
     :root {
         --accent: var(--color-accent-light);
         --accent-hover: var(--color-accent-hover-light);
+        --success: var(--color-success-light);
+        --success-hover: var(--color-success-hover-light);
         --background: var(--color-background-light);
         --surface: var(--color-surface-light);
         --surface-secondary: var(--color-surface-secondary-light);
@@ -111,6 +119,8 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
     html.dark {
         --accent: var(--color-accent-dark);
         --accent-hover: var(--color-accent-hover-dark);
+        --success: var(--color-success-dark);
+        --success-hover: var(--color-success-hover-dark);
         --background: var(--color-background-dark);
         --surface: var(--color-surface-dark);
         --surface-secondary: var(--color-surface-secondary-dark);

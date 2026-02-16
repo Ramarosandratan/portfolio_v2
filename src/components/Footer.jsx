@@ -13,13 +13,13 @@ const Footer = () => {
                         <p className="text-sm" style={{color: 'var(--text-muted)'}}>&copy; {currentYear} {t('footer.copyright')}</p>
                     </div>
                     <div className="flex space-x-6">
-                        <a href="#" className="transition-colors hover:opacity-80" style={{color: 'var(--text-muted)'}}>
+                        <a href="https://github.com/Ramarosandratan" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-80" style={{color: 'var(--text-muted)'}}>
                             <Github size={20} />
                         </a>
-                        <a href="#" className="transition-colors hover:opacity-80" style={{color: 'var(--text-muted)'}}>
+                        <a href="https://www.linkedin.com/in/rinasoa-mampionona-ramarosandratana/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:opacity-80" style={{color: 'var(--text-muted)'}}>
                             <Linkedin size={20} />
                         </a>
-                        <a href="mailto:example@email.com" className="transition-colors hover:opacity-80" style={{color: 'var(--text-muted)'}}>
+                        <a href="mailto:ramarosandratana2019@gmail.com" className="transition-colors hover:opacity-80" style={{color: 'var(--text-muted)'}}>
                             <Mail size={20} />
                         </a>
                     </div>

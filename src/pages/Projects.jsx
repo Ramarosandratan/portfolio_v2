@@ -8,9 +8,14 @@ import atomCmsImg from '../assets/projects/atom-cms.png';
 
 const Projects = () => {
     const { t } = useThemeLanguage();
-    const [filter, setFilter] = useState('All Projects');
+    const [filter, setFilter] = useState('all');
 
-    const filters = [t('projects.allProjects'), t('projects.fullStack'), t('projects.frontend'), t('projects.backend')];
+    const filterOptions = [
+        { key: 'all', label: t('projects.allProjects') },
+        { key: 'fullstack', label: t('projects.fullStack') },
+        { key: 'frontend', label: t('projects.frontend') },
+        { key: 'backend', label: t('projects.backend') }
+    ];
 
     const projects = [
         {
@@ -18,7 +23,7 @@ const Projects = () => {
             title: "Nexus Analytics",
             description: "A comprehensive sales dashboard built for enterprise clients. Features real-time data visualization, user role management, and automated reporting systems.",
             image: nexusAnalyticsImg,
-            category: "Full Stack",
+            category: "fullstack",
             tags: ["Next.js", "TypeScript", "PostgreSQL"],
             links: [
                 { label: "Case Study", icon: "article", primary: true },
@@ -30,7 +35,7 @@ const Projects = () => {
             title: "SwiftPay Mobile",
             description: "A cross-platform fintech application focusing on peer-to-peer payments. Implements biometric authentication and secure WebSocket connections for instant transactions.",
             image: swiftpayMobileImg,
-            category: "Mobile",
+            category: "mobile",
             tags: ["React Native", "Firebase"],
             links: [
                 { label: "Case Study", icon: "article", primary: true },
@@ -42,7 +47,7 @@ const Projects = () => {
             title: "Core API Service",
             description: "High-performance microservices architecture handling over 10k req/s. Includes custom load balancing, Redis caching layers, and comprehensive documentation.",
             image: coreApiServiceImg,
-            category: "Backend",
+            category: "backend",
             tags: ["Node.js", "Redis", "Docker"],
             links: [
                 { label: "Docs", icon: "article", primary: true },
@@ -54,7 +59,7 @@ const Projects = () => {
             title: "Sentient NLP",
             description: "A natural language processing toolkit designed for sentiment analysis on social media streams. Integrates with Twitter API v2.",
             image: sentientNlpImg,
-            category: "Machine Learning",
+            category: "ml",
             tags: ["Python", "TensorFlow"],
             links: [
                 { label: "Case Study", icon: "article", primary: true },
@@ -66,7 +71,7 @@ const Projects = () => {
             title: "Atom CMS",
             description: "A headless CMS built for speed and flexibility. Offers a customizable block editor and instantaneous GraphQL content delivery.",
             image: atomCmsImg,
-            category: "Frontend",
+            category: "frontend",
             tags: ["Vue.js", "GraphQL"],
             links: [
                 { label: "Case Study", icon: "article", primary: true },
@@ -75,10 +80,9 @@ const Projects = () => {
         }
     ];
 
-    const filteredProjects = filter === 'All Projects'
+    const filteredProjects = filter === 'all'
         ? projects
-        : projects.filter(p => p.category === filter || (filter === 'Full Stack' && p.category === 'Full Stack'));
-    // Note: Logic for filtering can be adjusted. For now simple matching.
+        : projects.filter(p => p.category === filter);
 
     return (
         <div className="flex flex-col min-h-screen transition-colors duration-300" style={{backgroundColor: 'var(--background)'}}>
@@ -87,10 +91,10 @@ const Projects = () => {
                 <div className="absolute inset-0 pointer-events-none" style={{background: 'linear-gradient(to bottom right, rgb(from var(--accent) r g b / 0.05), transparent)'}}></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <h1 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight transition-colors duration-300" style={{color: 'var(--text-primary)'}}>
-                        Selected <span style={{color: 'var(--accent)'}}>Works</span>
+                        {t('projects.selected')} <span style={{color: 'var(--accent)'}}>{t('projects.works')}</span>
                     </h1>
                     <p className="max-w-2xl mx-auto text-lg transition-colors duration-300" style={{color: 'var(--text-secondary)'}}>
-                        A collection of projects showcasing my journey in building scalable web applications, tackling complex backend challenges, and crafting intuitive user interfaces.
+                        {t('projects.description')}
                     </p>
                 </div>
             </section>
@@ -99,22 +103,22 @@ const Projects = () => {
             <div className="sticky top-20 z-40 backdrop-blur-sm border-b py-4 transition-colors duration-300" style={{backgroundColor: 'rgb(from var(--surface) r g b / 0.95)', borderColor: 'var(--border)'}}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
                     <div className="inline-flex rounded-lg p-1 shadow-inner overflow-x-auto max-w-full" style={{backgroundColor: 'var(--surface-secondary)'}}>
-                        {filters.map(f => (
+                        {filterOptions.map(option => (
                             <button
-                                key={f}
-                                onClick={() => setFilter(f)}
+                                key={option.key}
+                                onClick={() => setFilter(option.key)}
                                 className={`px-6 py-2 text-sm font-medium rounded-md transition-all ${
-                                    filter === f
+                                    filter === option.key
                                         ? "shadow-sm" 
                                         : "hover:opacity-80"
                                 }`}
                                 style={
-                                    filter === f 
+                                    filter === option.key 
                                         ? {backgroundColor: 'var(--surface)', color: 'var(--accent)', boxShadow: '0 0 0 1px rgb(from var(--border) r g b / 0.3)'}
                                         : {color: 'var(--text-secondary)'}
                                 }
                             >
-                                {f}
+                                {option.label}
                             </button>
                         ))}
                     </div>
@@ -181,7 +185,7 @@ const Projects = () => {
                         ))}
 
                         {/* Coming Soon Card - Only show when filtering 'All Projects' or relevant category if we had one */}
-                        {filter === t('projects.allProjects') && (
+                        {filter === 'all' && (
                             <article className="group rounded-xl overflow-hidden border-2 border-dashed flex flex-col h-full items-center justify-center text-center p-8 transition-all" style={{backgroundColor: 'var(--surface-secondary)', borderColor: 'var(--border)'}}>
                                 <div className="h-16 w-16 rounded-full flex items-center justify-center mb-4 transition-colors" style={{backgroundColor: 'var(--surface)', color: 'var(--text-muted)'}}>
                                     <span className="material-icons-round text-3xl">add</span>

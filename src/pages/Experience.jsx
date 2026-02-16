@@ -3,6 +3,9 @@ import { useThemeLanguage } from '../context/useThemeLanguage';
 import TimelineItem from '../components/TimelineItem';
 import SkillBar from '../components/SkillBar';
 import CertificationCard from '../components/CertificationCard';
+import SVGComponent from '../components/SVGComponent';
+import CertificationIconSVG from '../components/CertificationIconSVG';
+import ExperienceIconSVG from '../components/ExperienceIconSVG';
 
 const Experience = () => {
   const { t } = useThemeLanguage();
@@ -100,7 +103,7 @@ const Experience = () => {
             <div className="lg:col-span-7 space-y-8">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-semibold flex items-center gap-2 transition-colors duration-300" style={{color: 'var(--text-primary)'}}>
-                  <span className="text-2xl">📋</span> {activeTab === 'work' ? t('experience.workExperience') : t('experience.education')}
+                  <ExperienceIconSVG style={{width: '24px', height: '24px'}} /> {activeTab === 'work' ? t('experience.workExperience') : t('experience.education')}
                 </h2>
                 
                 {/* Toggle Switch */}
@@ -159,7 +162,7 @@ const Experience = () => {
               {/* Skills Card */}
               <div className="border rounded-2xl p-6 shadow-sm transition-colors duration-300" style={{backgroundColor: 'var(--surface)', borderColor: 'var(--border)'}}>
                 <h2 className="text-xl font-semibold mb-6 flex items-center gap-2 transition-colors duration-300" style={{color: 'var(--text-primary)'}}>
-                  <span className="text-2xl">💻</span> {t('experience.frontendSkills')}
+                  <SVGComponent style={{width: '24px', height: '24px'}} /> {t('experience.skills')}
                 </h2>
 
                 {/* Frontend Section */}
@@ -216,7 +219,7 @@ const Experience = () => {
               {/* Certifications */}
               <div className="border rounded-2xl p-6 shadow-sm transition-colors duration-300" style={{backgroundColor: 'var(--surface)', borderColor: 'var(--border)'}}>
                 <h2 className="text-xl font-semibold mb-6 flex items-center gap-2 transition-colors duration-300" style={{color: 'var(--text-primary)'}}>
-                  <span className="text-2xl">✓</span> {t('experience.certifications')}
+                  <CertificationIconSVG style={{width: '24px', height: '24px'}} /> {t('experience.certifications')}
                 </h2>
                 <div className="grid grid-cols-2 gap-4">
                   {certifications.map((cert, idx) => (

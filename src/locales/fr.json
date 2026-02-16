@@ -33,6 +33,9 @@
   },
   "projects": {
     "title": "Mes projets",
+    "selected": "Projets",
+    "works": "sélectionnés",
+    "description": "Une collection de projets présentant mon parcours dans la création d'applications web évolutives, la résolution de défis backend complexes et la conception d'interfaces utilisateur intuitives.",
     "allProjects": "Tous les projets",
     "fullStack": "Full Stack",
     "frontend": "Frontend",
@@ -49,7 +52,10 @@
     "sentientNlp": "Sentient NLP",
     "sentientNlpDesc": "Un kit d'outils de traitement du langage naturel conçu pour l'analyse de sentiment sur les flux de médias sociaux. S'intègre avec l'API Twitter v2.",
     "atomCms": "Atom CMS",
-    "atomCmsDesc": "Un CMS headless construit pour la vitesse et la flexibilité. Offre un éditeur de blocs personnalisable et une livraison de contenu GraphQL instantanée."
+    "atomCmsDesc": "Un CMS headless construit pour la vitesse et la flexibilité. Offre un éditeur de blocs personnalisable et une livraison de contenu GraphQL instantanée.",
+    "comingSoon": "Quelque chose de nouveau",
+    "comingSoonDesc": "Travaillant actuellement sur une marketplace Web3. Restez à l'écoute pour les mises à jour.",
+    "loadMore": "Charger plus de projets"
   },
   "experience": {
     "title": "Expérience & Compétences",
@@ -76,6 +82,7 @@
     "techUniversity": "Tech University",
     "techUniversityPeriod": "2014 - 2018",
     "techUniversityDesc": "Spécialisé en Ingénierie Logicielle avec un accent sur le développement Full Stack et l'Architecture Cloud.",
+    "skills": "Compétences",
     "frontendSkills": "Compétences Frontend",
     "backendSkills": "Compétences Backend",
     "devopsTools": "DevOps & Outils",
@@ -88,11 +95,13 @@
     "ckaIssued": "2023"
   },
   "contact": {
-    "title": "Construisons quelque chose d'extraordinaire",
+    "title": "Construisons quelque chose d'",
+    "title2": "Extraordinaire",
     "subtitle": "Que vous ayez une question, une idée de projet ou que vous vouliez simplement dire bonjour, je suis toujours ouvert à discuter de nouvelles opportunités et défis.",
     "contactDetails": "Détails de contact",
     "email": "E-mail",
     "location": "Localisation",
+    "basedIn": "Basé à Antananarivo, Madagascar",
     "connectWithMe": "Connectez-vous avec moi",
     "myResume": "Mon CV",
     "downloadCVDesc": "Téléchargez mon CV pour voir un aperçu détaillé de mes compétences techniques, de mon expérience et de mon éducation.",
@@ -101,7 +110,9 @@
     "fullName": "Nom complet",
     "emailAddress": "Adresse électronique",
     "subject": "Sujet",
+    "subjectPlaceholder": "Demande de projet / Recrutement",
     "message": "Message",
+    "messagePlaceholder": "Parlez-moi de votre projet, calendrier et budget...",
     "sendButton": "Envoyer le message",
     "successMessage": "Merci ! Votre message a été envoyé avec succès."
   }

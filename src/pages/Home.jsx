@@ -16,9 +16,9 @@ const Home = () => {
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                         {/* Hero Text Content */}
                         <div className="flex flex-col gap-6 lg:gap-8 order-2 lg:order-1">
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full w-fit border" style={{ backgroundColor: 'rgb(from var(--accent) r g b / 0.15)', borderColor: 'rgb(from var(--accent) r g b / 0.3)' }}>
-                                <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--accent)' }}></span>
-                                <span className="text-xs font-semibold tracking-wide uppercase" style={{ color: 'var(--accent)' }}>{t('home.availableForWork')}</span>
+                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full w-fit border" style={{ backgroundColor: 'rgb(from var(--success) r g b / 0.15)', borderColor: 'rgb(from var(--success) r g b / 0.3)' }}>
+                                <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: 'var(--success)' }}></span>
+                                <span className="text-xs font-semibold tracking-wide uppercase" style={{ color: 'var(--success)' }}>{t('home.availableForWork')}</span>
                             </div>
                             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-extrabold tracking-tight leading-[1.1]" style={{ color: 'var(--text-primary)' }}>
                                 {t('home.heroTitle')} <br />
@@ -111,7 +111,7 @@ const Home = () => {
                             {/* Floating Badge */}
                             <div className="absolute -bottom-6 -right-6 z-20 hidden md:block animate-bounce" style={{ animationDuration: '3s' }}>
                                 <div className="p-3 rounded border flex items-center gap-3" style={{ backgroundColor: 'var(--surface)', borderColor: 'var(--border)', boxShadow: 'var(--shadow-soft)' }}>
-                                    <div className="p-2 rounded-full" style={{ backgroundColor: 'rgb(from var(--accent) r g b / 0.15)', color: 'var(--accent)' }}>
+                                    <div className="p-2 rounded-full" style={{ backgroundColor: 'rgb(from var(--success) r g b / 0.15)', color: 'var(--success)' }}>
                                         <span className="material-icons text-sm">check_circle</span>
                                     </div>
                                     <div>
@@ -129,10 +129,10 @@ const Home = () => {
             <section className="border-t transition-colors duration-300" style={{ borderColor: 'var(--border)', backgroundColor: 'var(--surface-secondary)' }}>
                 <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-10">
                     <p className="text-center text-sm font-medium mb-6 uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>{t('home.technologiesHeading')}</p>
-                    <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8 opacity-70 transition-all duration-500">
                         {/* React */}
                         <div className="group flex flex-col items-center gap-2 hover:text-primary transition-colors cursor-default">
-                            <div className="w-10 h-10 flex items-center justify-center">
+                            <div className="w-10 h-10 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <svg className="w-full h-full" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M18.6789 15.9759C18.6789 14.5415 17.4796 13.3785 16 13.3785C14.5206 13.3785 13.3211 14.5415 13.3211 15.9759C13.3211 17.4105 14.5206 18.5734 16 18.5734C17.4796 18.5734 18.6789 17.4105 18.6789 15.9759Z" fill="#53C1DE" />
                                     <path fillRule="evenodd" clipRule="evenodd" d="M24.7004 11.1537C25.2661 8.92478 25.9772 4.79148 23.4704 3.39016C20.9753 1.99495 17.7284 4.66843 16.0139 6.27318C14.3044 4.68442 10.9663 2.02237 8.46163 3.42814C5.96751 4.82803 6.73664 8.8928 7.3149 11.1357C4.98831 11.7764 1 13.1564 1 15.9759C1 18.7874 4.98416 20.2888 7.29698 20.9289C6.71658 23.1842 5.98596 27.1909 8.48327 28.5877C10.9973 29.9932 14.325 27.3945 16.0554 25.7722C17.7809 27.3864 20.9966 30.0021 23.4922 28.6014C25.9956 27.1963 25.3436 23.1184 24.7653 20.8625C27.0073 20.221 31 18.7523 31 15.9759C31 13.1835 26.9903 11.7923 24.7004 11.1537ZM24.4162 19.667C24.0365 18.5016 23.524 17.2623 22.8971 15.9821C23.4955 14.7321 23.9881 13.5088 24.3572 12.3509C26.0359 12.8228 29.7185 13.9013 29.7185 15.9759C29.7185 18.07 26.1846 19.1587 24.4162 19.667ZM22.85 27.526C20.988 28.571 18.2221 26.0696 16.9478 24.8809C17.7932 23.9844 18.638 22.9422 19.4625 21.7849C20.9129 21.6602 22.283 21.4562 23.5256 21.1777C23.9326 22.7734 24.7202 26.4763 22.85 27.526ZM9.12362 27.5111C7.26143 26.47 8.11258 22.8946 8.53957 21.2333C9.76834 21.4969 11.1286 21.6865 12.5824 21.8008C13.4123 22.9332 14.2816 23.9741 15.1576 24.8857C14.0753 25.9008 10.9945 28.557 9.12362 27.5111ZM2.28149 15.9759C2.28149 13.874 5.94207 12.8033 7.65904 12.3326C8.03451 13.5165 8.52695 14.7544 9.12123 16.0062C8.51925 17.2766 8.01977 18.5341 7.64085 19.732C6.00369 19.2776 2.28149 18.0791 2.28149 15.9759ZM9.1037 4.50354C10.9735 3.45416 13.8747 6.00983 15.1159 7.16013C14.2444 8.06754 13.3831 9.1006 12.5603 10.2265C11.1494 10.3533 9.79875 10.5569 8.55709 10.8297C8.09125 9.02071 7.23592 5.55179 9.1037 4.50354ZM20.3793 11.5771C21.3365 11.6942 22.2536 11.85 23.1147 12.0406C22.8562 12.844 22.534 13.6841 22.1545 14.5453C21.6044 13.5333 21.0139 12.5416 20.3793 11.5771ZM16.0143 8.0481C16.6054 8.66897 17.1974 9.3623 17.7798 10.1145C16.5985 10.0603 15.4153 10.0601 14.234 10.1137C14.8169 9.36848 15.414 8.67618 16.0143 8.0481ZM9.8565 14.5444C9.48329 13.6862 9.16398 12.8424 8.90322 12.0275C9.75918 11.8418 10.672 11.69 11.623 11.5748C10.9866 12.5372 10.3971 13.5285 9.8565 14.5444ZM11.6503 20.4657C10.6679 20.3594 9.74126 20.2153 8.88556 20.0347C9.15044 19.2055 9.47678 18.3435 9.85796 17.4668C10.406 18.4933 11.0045 19.4942 11.6503 20.4657ZM16.0498 23.9915C15.4424 23.356 14.8365 22.6531 14.2448 21.8971C15.4328 21.9423 16.6231 21.9424 17.811 21.891C17.2268 22.6608 16.6369 23.3647 16.0498 23.9915ZM22.1667 17.4222C22.5677 18.3084 22.9057 19.1657 23.1742 19.9809C22.3043 20.1734 21.3652 20.3284 20.3757 20.4435C21.015 19.4607 21.6149 18.4536 22.1667 17.4222ZM18.7473 20.5941C16.9301 20.72 15.1016 20.7186 13.2838 20.6044C12.2509 19.1415 11.3314 17.603 10.5377 16.0058C11.3276 14.4119 12.2404 12.8764 13.2684 11.4158C15.0875 11.2825 16.9178 11.2821 18.7369 11.4166C19.7561 12.8771 20.6675 14.4086 21.4757 15.9881C20.6771 17.5812 19.7595 19.1198 18.7473 20.5941ZM22.8303 4.4666C24.7006 5.51254 23.8681 9.22726 23.4595 10.8426C22.2149 10.5641 20.8633 10.3569 19.4483 10.2281C18.6239 9.09004 17.7698 8.05518 16.9124 7.15949C18.1695 5.98441 20.9781 3.43089 22.8303 4.4666Z" fill="#53C1DE" />
@@ -142,7 +142,7 @@ const Home = () => {
                         </div>
                         {/* Node */}
                         <div className="group flex flex-col items-center gap-2 hover:text-primary transition-colors cursor-default">
-                            <div className="w-10 h-10 flex items-center justify-center">
+                            <div className="w-10 h-10 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <svg className="w-full h-full" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M16,30a2.151,2.151,0,0,1-1.076-.288L11.5,27.685c-.511-.286-.262-.387-.093-.446a6.828,6.828,0,0,0,1.549-.7.263.263,0,0,1,.255.019l2.631,1.563a.34.34,0,0,0,.318,0l10.26-5.922a.323.323,0,0,0,.157-.278V10.075a.331.331,0,0,0-.159-.283L16.158,3.875a.323.323,0,0,0-.317,0L5.587,9.794a.33.33,0,0,0-.162.281V21.916a.315.315,0,0,0,.161.274L8.4,23.814c1.525.762,2.459-.136,2.459-1.038V11.085a.3.3,0,0,1,.3-.3h1.3a.3.3,0,0,1,.3.3V22.777c0,2.035-1.108,3.2-3.038,3.2a4.389,4.389,0,0,1-2.363-.642L4.661,23.788a2.166,2.166,0,0,1-1.076-1.872V10.075A2.162,2.162,0,0,1,4.661,8.2L14.922,2.276a2.246,2.246,0,0,1,2.156,0L27.338,8.2a2.165,2.165,0,0,1,1.077,1.87V21.916a2.171,2.171,0,0,1-1.077,1.872l-10.26,5.924A2.152,2.152,0,0,1,16,30Z" fill="#83cd29" />
                                     <path d="M14.054,17.953a.3.3,0,0,1,.3-.3h1.327a.3.3,0,0,1,.295.251c.2,1.351.8,2.032,3.513,2.032,2.161,0,3.082-.489,3.082-1.636,0-.661-.261-1.152-3.62-1.481-2.808-.278-4.544-.9-4.544-3.144,0-2.07,1.745-3.305,4.67-3.305,3.287,0,4.914,1.141,5.12,3.589a.3.3,0,0,1-.295.323H22.566a.3.3,0,0,1-.288-.232c-.319-1.421-1.1-1.875-3.2-1.875-2.36,0-2.634.822-2.634,1.438,0,.746.324.964,3.51,1.385,3.153.417,4.651,1.007,4.651,3.223,0,2.236-1.864,3.516-5.115,3.516C14.995,21.743,14.054,19.682,14.054,17.953Z" fill="#83cd29" />
@@ -152,7 +152,7 @@ const Home = () => {
                         </div>
                         {/* TypeScript */}
                         <div className="group flex flex-col items-center gap-2 hover:text-primary transition-colors cursor-default">
-                            <div className="w-10 h-10 flex items-center justify-center">
+                            <div className="w-10 h-10 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <svg
                                     className="w-full h-full"
                                     viewBox="0 0 32 32"
@@ -173,7 +173,7 @@ const Home = () => {
                         </div>
                         {/* PostgreSQL */}
                         <div className="group flex flex-col items-center gap-2 hover:text-primary transition-colors cursor-default">
-                            <div className="w-10 h-10 flex items-center justify-center">
+                            <div className="w-10 h-10 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <svg
                                     width="264px"
                                     height="264px"
@@ -211,7 +211,7 @@ const Home = () => {
                         </div>
                         {/* Next.js */}
                         <div className="group flex flex-col items-center gap-2 hover:text-primary transition-colors cursor-default">
-                            <div className="w-10 h-10 flex items-center justify-center">
+                            <div className="w-10 h-10 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <svg className="w-full h-full fill-current text-neutral-400 group-hover:text-black transition-colors" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M0 7.5C0 3.35786 3.35786 0 7.5 0C11.6421 0 15 3.35786 15 7.5C15 10.087 13.6902 12.3681 11.6975 13.7163L4.90687 4.20942C4.78053 4.03255 4.5544 3.95756 4.34741 4.02389C4.14042 4.09022 4 4.28268 4 4.50004V12H5V6.06027L10.8299 14.2221C9.82661 14.7201 8.696 15 7.5 15C3.35786 15 0 11.6421 0 7.5ZM10 10V4H11V10H10Z" fill="currentColor" />
                                 </svg>
@@ -220,7 +220,7 @@ const Home = () => {
                         </div>
                         {/* Tailwind */}
                         <div className="group flex flex-col items-center gap-2 hover:text-primary transition-colors cursor-default">
-                            <div className="w-10 h-10 flex items-center justify-center">
+                            <div className="w-10 h-10 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-300">
                                 <svg className="w-full h-full fill-current text-neutral-400 group-hover:text-[#44a8b3] transition-colors" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9,13.7q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q11.1,10.9,9,13.7ZM2,22.1q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q4.1,19.3,2,22.1Z" />
                                 </svg>
