@@ -123,6 +123,7 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
         --shadow-glow: var(--shadow-glow-dark);
     }
 
+
     body {
         @apply font-display overflow-x-hidden;
         background-color: var(--background);

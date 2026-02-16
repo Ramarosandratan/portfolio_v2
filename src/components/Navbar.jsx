@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useThemeLanguage } from '../context/useThemeLanguage';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { t } = useThemeLanguage();
+    const linkStyle = ({ isActive }) => ({
+        color: isActive ? 'var(--accent)' : 'var(--text-secondary)'
+    });
 
     return (
         <nav className="fixed top-0 w-full z-50 backdrop-blur-md border-b transition-colors duration-300" style={{backgroundColor: 'rgb(from var(--surface) r g b / 0.9)', borderColor: 'rgb(from var(--border) r g b / 0.6)'}}>
@@ -21,11 +24,10 @@ const Navbar = () => {
                     {/* Desktop Menu */}
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-8">
-                            <Link to="/" className="font-medium px-3 py-2 text-sm transition-colors" style={{color: 'var(--accent)'}}>{t('navbar.home')}</Link>
-                            <Link to="/projects" className="px-3 py-2 text-sm font-medium transition-colors hover:opacity-80" style={{color: 'var(--text-secondary)'}}>{t('navbar.projects')}</Link>
-                            <Link to="/experience" className="px-3 py-2 text-sm font-medium transition-colors hover:opacity-80" style={{color: 'var(--text-secondary)'}}>{t('navbar.experience')}</Link>
-                            <Link to="/about" className="px-3 py-2 text-sm font-medium transition-colors hover:opacity-80" style={{color: 'var(--text-secondary)'}}>{t('navbar.about')}</Link>
-                            <Link to="/contact" className="px-3 py-2 text-sm font-medium transition-colors hover:opacity-80" style={{color: 'var(--text-secondary)'}}>{t('navbar.contact')}</Link>
+                            <NavLink to="/" className="font-medium px-3 py-2 text-sm transition-colors" style={linkStyle} end>{t('navbar.home')}</NavLink>
+                            <NavLink to="/projects" className="px-3 py-2 text-sm font-medium transition-colors hover:opacity-80" style={linkStyle}>{t('navbar.projects')}</NavLink>
+                            <NavLink to="/experience" className="px-3 py-2 text-sm font-medium transition-colors hover:opacity-80" style={linkStyle}>{t('navbar.experience')}</NavLink>
+                            <NavLink to="/contact" className="px-3 py-2 text-sm font-medium transition-colors hover:opacity-80" style={linkStyle}>{t('navbar.contact')}</NavLink>
                         </div>
                     </div>
 
@@ -55,11 +57,10 @@ const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden border-t transition-colors duration-300" style={{backgroundColor: 'var(--surface)', borderColor: 'var(--border)'}}>
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <Link to="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium" style={{color: 'var(--accent)'}}>{t('navbar.home')}</Link>
-                        <Link to="/projects" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium transition-colors hover:opacity-80" style={{color: 'var(--text-secondary)'}}>{t('navbar.projects')}</Link>
-                        <Link to="/experience" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium transition-colors hover:opacity-80" style={{color: 'var(--text-secondary)'}}>{t('navbar.experience')}</Link>
-                        <Link to="/about" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium transition-colors hover:opacity-80" style={{color: 'var(--text-secondary)'}}>{t('navbar.about')}</Link>
-                        <Link to="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium transition-colors hover:opacity-80" style={{color: 'var(--text-secondary)'}}>{t('navbar.contact')}</Link>
+                        <NavLink to="/" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium" style={linkStyle} end>{t('navbar.home')}</NavLink>
+                        <NavLink to="/projects" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium transition-colors hover:opacity-80" style={linkStyle}>{t('navbar.projects')}</NavLink>
+                        <NavLink to="/experience" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium transition-colors hover:opacity-80" style={linkStyle}>{t('navbar.experience')}</NavLink>
+                        <NavLink to="/contact" onClick={() => setIsOpen(false)} className="block px-3 py-2 rounded-md text-base font-medium transition-colors hover:opacity-80" style={linkStyle}>{t('navbar.contact')}</NavLink>
                         <Link to="/contact" onClick={() => setIsOpen(false)} className="text-white block px-3 py-2 rounded-md text-base font-medium mt-4 text-center transition-all hover:opacity-90" style={{backgroundColor: 'var(--accent)'}}>{t('navbar.hireMe')}</Link>
                     </div>
                 </div>

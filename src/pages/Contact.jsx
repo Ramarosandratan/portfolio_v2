@@ -35,7 +35,7 @@ const Contact = () => {
     return (
         <div className="flex flex-col min-h-screen transition-colors duration-300" style={{backgroundColor: 'var(--background)'}}>
             {/* Main Content Area */}
-            <main className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <main className="flex-grow flex items-center justify-center pt-28 pb-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl w-full">
                     {/* Header Section */}
                     <div className="text-center mb-12 sm:mb-16">

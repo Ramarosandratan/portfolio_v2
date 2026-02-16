@@ -23,6 +23,7 @@ export const ThemeLanguageProvider = ({ children }) => {
     } else {
       document.documentElement.classList.remove('dark');
     }
+    document.body.classList.remove('dark');
   }, [theme]);
 
   const toggleTheme = () => {
@@ -36,6 +37,7 @@ export const ThemeLanguageProvider = ({ children }) => {
         } else {
           document.documentElement.classList.remove('dark');
         }
+        document.body.classList.remove('dark');
       }
 
       return newTheme;

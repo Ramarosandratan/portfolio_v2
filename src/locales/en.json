@@ -25,18 +25,11 @@
     "home": "Home",
     "projects": "Projects",
     "experience": "Experience",
-    "about": "About",
     "contact": "Contact",
     "hireMe": "Hire Me"
   },
   "footer": {
     "copyright": "Portfolio. All rights reserved."
-  },
-  "about": {
-    "title": "About Me",
-    "description1": "I am a passionate developer with a strong foundation in computer science principles and modern web technologies. My journey began with a curiosity for how things work nicely on the web, which led me to master the entire stack.",
-    "description2": "I focus on writing clean, maintainable code and building intuitive user interfaces. When I'm not coding, I'm exploring new technologies or contributing to open source projects.",
-    "skillsHeading": "Skills & Technologies"
   },
   "projects": {
     "title": "My Projects",

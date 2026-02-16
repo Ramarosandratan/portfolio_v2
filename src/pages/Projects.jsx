@@ -83,7 +83,7 @@ const Projects = () => {
     return (
         <div className="flex flex-col min-h-screen transition-colors duration-300" style={{backgroundColor: 'var(--background)'}}>
             {/* Header Section */}
-            <section className="relative pt-16 pb-12 sm:pt-24 sm:pb-16 overflow-hidden" style={{backgroundColor: 'var(--background)'}}>
+            <section className="relative pt-24 pb-12 sm:pt-28 sm:pb-16 overflow-hidden" style={{backgroundColor: 'var(--background)'}}>
                 <div className="absolute inset-0 pointer-events-none" style={{background: 'linear-gradient(to bottom right, rgb(from var(--accent) r g b / 0.05), transparent)'}}></div>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <h1 className="text-4xl sm:text-5xl font-bold mb-6 tracking-tight transition-colors duration-300" style={{color: 'var(--text-primary)'}}>

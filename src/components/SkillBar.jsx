@@ -2,10 +2,16 @@ export const SkillBar = ({ name, percentage = 0 }) => {
   return (
     <div className="group">
       <div className="flex justify-between mb-1">
-        <span className="text-sm font-medium text-neutral-700 dark:text-neutral-300 transition-colors duration-300">
+        <span
+          className="text-sm font-medium transition-colors duration-300"
+          style={{ color: 'var(--text-primary)' }}
+        >
           {name}
         </span>
-        <span className="text-xs font-medium text-primary dark:text-primary transition-colors duration-300">
+        <span
+          className="text-xs font-medium transition-colors duration-300"
+          style={{ color: 'var(--accent)' }}
+        >
           {percentage}%
         </span>
       </div>
