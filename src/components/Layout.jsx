@@ -4,9 +4,9 @@ import SettingsButton from './SettingsButton';
 
 const Layout = ({ children }) => {
     return (
-        <div className="flex flex-col min-h-screen font-sans text-neutral-900 dark:text-white dark:bg-neutral-900 transition-colors duration-300">
+        <div className="flex flex-col min-h-screen font-sans transition-colors duration-300" style={{backgroundColor: 'var(--background)', color: 'var(--text-primary)'}}>
             <Navbar />
-            <main className="flex-grow bg-white dark:bg-neutral-900 transition-colors duration-300">
+            <main className="flex-grow transition-colors duration-300" style={{backgroundColor: 'var(--background)'}}>
                 {children}
             </main>
             <Footer />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Settings, Sun, Moon } from 'lucide-react';
-import { useThemeLanguage } from '../context/ThemeLanguageContext';
+import { useThemeLanguage } from '../context/useThemeLanguage';
 
 export default function SettingsButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,35 +22,36 @@ export default function SettingsButton() {
     <div className="fixed bottom-6 right-6 z-50">
       {/* Menu */}
       {isOpen && (
-        <div className="absolute bottom-20 right-0 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4 min-w-48 border border-gray-200 dark:border-gray-700 animate-fade-in transition-all duration-200">
+        <div className="absolute bottom-20 right-0 rounded-lg shadow-lg p-4 min-w-48 border animate-fade-in transition-all duration-200" style={{backgroundColor: 'var(--surface)', borderColor: 'var(--border)'}}>
           {/* Titre */}
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-4">
+          <h3 className="text-sm font-semibold mb-4" style={{color: 'var(--text-primary)'}}>
             {t('settings.title')}
           </h3>
 
           {/* Section Thème */}
-          <div className="mb-4 pb-4 border-b border-gray-200 dark:border-gray-700">
-            <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-3">
+          <div className="mb-4 pb-4 border-b" style={{borderColor: 'var(--border)'}}>
+            <p className="text-xs font-medium mb-3" style={{color: 'var(--text-secondary)'}}>
               {t('settings.theme')}
             </p>
             <button
               onClick={handleThemeToggle}
-              className="w-full flex items-center justify-between px-3 py-2 rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200"
+              className="w-full flex items-center justify-between px-3 py-2 rounded-md transition-colors duration-200 hover:opacity-80"
+              style={{backgroundColor: 'var(--surface-secondary)'}}
             >
-              <span className="text-sm text-gray-900 dark:text-white">
+              <span className="text-sm" style={{color: 'var(--text-primary)'}}>
                 {theme === 'light' ? t('settings.light') : t('settings.dark')}
               </span>
               {theme === 'light' ? (
-                <Sun size={18} className="text-yellow-500" />
+                <Sun size={18} style={{color: 'var(--accent)'}} />
               ) : (
-                <Moon size={18} className="text-blue-400" />
+                <Moon size={18} style={{color: 'var(--accent)'}} />
               )}
             </button>
           </div>
 
           {/* Section Langue */}
           <div>
-            <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-3">
+            <p className="text-xs font-medium mb-3" style={{color: 'var(--text-secondary)'}}>
               {t('settings.language')}
             </p>
             <div className="flex gap-2">
@@ -58,9 +59,10 @@ export default function SettingsButton() {
                 onClick={() => handleLanguageChange('fr')}
                 className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   language === 'fr'
-                    ? 'bg-blue-500 text-white shadow-md'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
+                    ? 'text-white shadow-md'
+                    : 'hover:opacity-80'
                 }`}
+                style={language === 'fr' ? {backgroundColor: 'var(--accent)'} : {backgroundColor: 'var(--surface-secondary)', color: 'var(--text-primary)'}}
               >
                 FR
               </button>
@@ -68,9 +70,10 @@ export default function SettingsButton() {
                 onClick={() => handleLanguageChange('en')}
                 className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   language === 'en'
-                    ? 'bg-blue-500 text-white shadow-md'
-                    : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
+                    ? 'text-white shadow-md'
+                    : 'hover:opacity-80'
                 }`}
+                style={language === 'en' ? {backgroundColor: 'var(--accent)'} : {backgroundColor: 'var(--surface-secondary)', color: 'var(--text-primary)'}}
               >
                 EN
               </button>
@@ -82,7 +85,8 @@ export default function SettingsButton() {
       {/* Bouton flottant */}
       <button
         onClick={toggleMenu}
-        className="w-14 h-14 rounded-full bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center"
+        className="w-14 h-14 rounded-full text-white shadow-lg hover:shadow-xl transition-all duration-200 flex items-center justify-center hover:opacity-90"
+        style={{backgroundColor: 'var(--accent)'}}
         aria-label="Open settings"
       >
         <Settings size={24} />

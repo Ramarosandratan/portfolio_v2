@@ -1,63 +1,56 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import frTranslations from '../locales/fr.json';
-import enTranslations from '../locales/en.json';
-
-const ThemeLanguageContext = createContext();
-
-const translations = {
-  fr: frTranslations,
-  en: enTranslations,
-};
+import { useState, useEffect } from 'react';
+import {
+  ThemeLanguageContext,
+  translations,
+  isBrowser,
+} from './themeLanguageContext.shared';
 
 export const ThemeLanguageProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
-  const [language, setLanguage] = useState('fr');
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (!isBrowser) return 'light';
+    return window.localStorage.getItem('theme') || 'light';
+  });
 
-  // Charger les préférences depuis localStorage au montage
+  const [language, setLanguage] = useState(() => {
+    if (!isBrowser) return 'fr';
+    return window.localStorage.getItem('language') || 'fr';
+  });
+
   useEffect(() => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    const savedLanguage = localStorage.getItem('language') || 'fr';
-
-    setTheme(savedTheme);
-    setLanguage(savedLanguage);
-
-    // Appliquer la classe dark si nécessaire
-    if (savedTheme === 'dark') {
+    if (!isBrowser) return;
+    if (theme === 'dark') {
       document.documentElement.classList.add('dark');
     } else {
       document.documentElement.classList.remove('dark');
     }
+  }, [theme]);
 
-    setIsLoaded(true);
-  }, []);
-
-  // Changer le thème
   const toggleTheme = () => {
     setTheme((prevTheme) => {
       const newTheme = prevTheme === 'light' ? 'dark' : 'light';
-      localStorage.setItem('theme', newTheme);
 
-      // Appliquer ou retirer la classe dark sur <html>
-      if (newTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
+      if (isBrowser) {
+        window.localStorage.setItem('theme', newTheme);
+        if (newTheme === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
       }
 
       return newTheme;
     });
   };
 
-  // Changer la langue
   const changeLanguage = (newLanguage) => {
     if (newLanguage !== language) {
       setLanguage(newLanguage);
-      localStorage.setItem('language', newLanguage);
+      if (isBrowser) {
+        window.localStorage.setItem('language', newLanguage);
+      }
     }
   };
 
-  // Obtenir les traductions pour la langue actuelle
   const t = (key) => {
     const keys = key.split('.');
     let value = translations[language];
@@ -77,7 +70,6 @@ export const ThemeLanguageProvider = ({ children }) => {
         language,
         changeLanguage,
         t,
-        isLoaded,
       }}
     >
       {children}
@@ -85,13 +77,4 @@ export const ThemeLanguageProvider = ({ children }) => {
   );
 };
 
-export const useThemeLanguage = () => {
-  const context = useContext(ThemeLanguageContext);
-  if (!context) {
-    throw new Error(
-      'useThemeLanguage must be used within ThemeLanguageProvider'
-    );
-  }
-  return context;
-};
 

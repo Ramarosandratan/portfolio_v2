@@ -2,38 +2,31 @@ export const TimelineItem = ({ title, company, period, description, skills, isEd
   return (
     <div className="relative group">
       {/* Timeline dot */}
-      <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full border-4 border-white dark:border-neutral-900 bg-primary group-hover:shadow-lg transition-shadow dark:shadow-primary/50"></div>
+      <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full border-4 group-hover:shadow-lg transition-shadow" style={{borderColor: 'var(--background)', backgroundColor: 'var(--accent)', boxShadow: 'var(--shadow-glow)'}}></div>
 
       {/* Card content */}
-      <div className="p-6 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:border-primary/50 dark:hover:border-primary/50 hover:shadow-lg dark:hover:shadow-lg dark:hover:shadow-black/30 transition-all duration-300 transform hover:-translate-y-1">
+      <div className="p-6 border rounded-xl transition-all duration-300 transform hover:-translate-y-1" style={{backgroundColor: 'var(--surface)', borderColor: 'var(--border)', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)'}}>
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
           <div>
-            <h3 className="text-lg font-bold text-neutral-900 dark:text-white group-hover:text-primary transition-colors">
+            <h3 className="text-lg font-bold transition-colors" style={{color: 'var(--text-primary)'}}>
               {title}
             </h3>
-            <p className={`font-medium text-sm ${isEducation 
-              ? 'text-neutral-600 dark:text-neutral-400' 
-              : 'text-primary dark:text-primary'
-            } transition-colors duration-300`}>
+            <p className={`font-medium text-sm transition-colors duration-300`} style={{color: isEducation ? 'var(--text-secondary)' : 'var(--accent)'}}>
               {company}
             </p>
           </div>
-          <span className={`inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium whitespace-nowrap transition-colors duration-300 ${
-            isEducation 
-              ? 'bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300' 
-              : 'bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary'
-          }`}>
+          <span className="inline-flex items-center px-2.5 py-0.5 rounded text-xs font-medium whitespace-nowrap transition-colors duration-300" style={isEducation ? {backgroundColor: 'var(--surface-secondary)', color: 'var(--text-secondary)'} : {backgroundColor: 'rgb(from var(--accent) r g b / 0.15)', color: 'var(--accent)'}}>
             {period}
           </span>
         </div>
 
         {/* Description or bullet points */}
         {typeof description === 'string' ? (
-          <p className="text-sm text-neutral-600 dark:text-neutral-400 leading-relaxed mb-4 transition-colors duration-300">
+          <p className="text-sm leading-relaxed mb-4 transition-colors duration-300" style={{color: 'var(--text-secondary)'}}>
             {description}
           </p>
         ) : (
-          <ul className="list-disc list-outside ml-4 space-y-2 text-sm text-neutral-600 dark:text-neutral-400 mb-4 transition-colors duration-300">
+          <ul className="list-disc list-outside ml-4 space-y-2 text-sm mb-4 transition-colors duration-300" style={{color: 'var(--text-secondary)'}}>
             {Array.isArray(description) && description.map((item, idx) => (
               <li key={idx}>{item}</li>
             ))}
@@ -46,7 +39,8 @@ export const TimelineItem = ({ title, company, period, description, skills, isEd
             {skills.map((skill) => (
               <span 
                 key={skill}
-                className="px-2 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-600 dark:text-neutral-300 text-xs rounded border border-neutral-200 dark:border-neutral-600 hover:border-primary hover:text-primary dark:hover:text-primary transition-colors duration-300"
+                className="px-2 py-1 text-xs rounded border transition-colors duration-300 hover:opacity-80"
+                style={{backgroundColor: 'var(--surface-secondary)', color: 'var(--text-secondary)', borderColor: 'var(--border)'}}
               >
                 {skill}
               </span>

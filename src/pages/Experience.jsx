@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useThemeLanguage } from '../context/ThemeLanguageContext';
+import { useThemeLanguage } from '../context/useThemeLanguage';
 import TimelineItem from '../components/TimelineItem';
 import SkillBar from '../components/SkillBar';
 import CertificationCard from '../components/CertificationCard';
