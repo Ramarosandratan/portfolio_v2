@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useThemeLanguage } from '../context/ThemeLanguageContext';
 import TimelineItem from '../components/TimelineItem';
 import SkillBar from '../components/SkillBar';
 import CertificationCard from '../components/CertificationCard';
 
 const Experience = () => {
+  const { t } = useThemeLanguage();
   const [activeTab, setActiveTab] = useState('work');
 
   const workExperience = [
@@ -85,14 +87,14 @@ const Experience = () => {
   const displayExperience = activeTab === 'work' ? workExperience : educationExperience;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white dark:bg-neutral-900 transition-colors duration-300">
       {/* Header */}
       <div className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Experience &amp; Skills
+        <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 dark:text-white mb-4 transition-colors duration-300">
+          {t('experience.title')}
         </h1>
-        <p className="text-gray-600 max-w-2xl text-lg">
-          My professional journey through software engineering and the technical arsenal I've built along the way.
+        <p className="text-neutral-600 dark:text-neutral-400 max-w-2xl text-lg transition-colors duration-300">
+          {t('experience.subtitle')}
         </p>
       </div>
 
@@ -100,37 +102,37 @@ const Experience = () => {
         {/* Left Column: Timeline (7 cols) */}
         <div className="lg:col-span-7 space-y-8">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <span className="text-2xl">📋</span> Professional History
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white flex items-center gap-2 transition-colors duration-300">
+              <span className="text-2xl">📋</span> {activeTab === 'work' ? t('experience.workExperience') : t('experience.education')}
             </h2>
             
             {/* Toggle Switch */}
-            <div className="bg-gray-200 p-1 rounded-lg inline-flex">
+            <div className="bg-neutral-200 dark:bg-neutral-800 p-1 rounded-lg inline-flex transition-colors duration-300">
               <button 
                 onClick={() => setActiveTab('work')}
                 className={`px-3 py-1 rounded text-xs font-medium transition-all ${
                   activeTab === 'work'
-                    ? 'bg-white shadow-sm text-gray-900'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-white dark:bg-neutral-700 shadow-sm text-neutral-900 dark:text-white'
+                    : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'
                 }`}
               >
-                Work
+                {t('experience.workExperience')}
               </button>
               <button 
                 onClick={() => setActiveTab('education')}
                 className={`px-3 py-1 rounded text-xs font-medium transition-all ${
                   activeTab === 'education'
-                    ? 'bg-white shadow-sm text-gray-900'
-                    : 'text-gray-500 hover:text-gray-700'
+                    ? 'bg-white dark:bg-neutral-700 shadow-sm text-neutral-900 dark:text-white'
+                    : 'text-neutral-500 dark:text-neutral-400 hover:text-neutral-700 dark:hover:text-neutral-300'
                 }`}
               >
-                Education
+                {t('experience.education')}
               </button>
             </div>
           </div>
 
           {/* Timeline Container */}
-          <div className="relative pl-8 border-l-2 border-gray-200 space-y-12">
+          <div className="relative pl-8 border-l-2 border-neutral-200 dark:border-neutral-700 space-y-12 transition-colors duration-300">
             {displayExperience.map((item, idx) => (
               <TimelineItem
                 key={idx}
@@ -148,15 +150,15 @@ const Experience = () => {
         {/* Right Column: Skills & Certifications (5 cols) */}
         <div className="lg:col-span-5 space-y-8">
           {/* Skills Card */}
-          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-              <span className="text-2xl">💻</span> Technical Proficiency
+          <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 shadow-sm transition-colors duration-300">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-6 flex items-center gap-2 transition-colors duration-300">
+              <span className="text-2xl">💻</span> {t('experience.frontendSkills')}
             </h2>
 
             {/* Frontend Section */}
             <div className="mb-8">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-                Frontend
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-4 transition-colors duration-300">
+                {t('experience.frontendSkills')}
               </h3>
               <div className="space-y-4">
                 {frontendSkills.map((skill) => (
@@ -171,8 +173,8 @@ const Experience = () => {
 
             {/* Backend Section */}
             <div className="mb-8">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-                Backend
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-4 transition-colors duration-300">
+                {t('experience.backendSkills')}
               </h3>
               <div className="space-y-4">
                 {backendSkills.map((skill) => (
@@ -187,14 +189,14 @@ const Experience = () => {
 
             {/* DevOps Section */}
             <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-                DevOps &amp; Tools
+              <h3 className="text-xs font-bold uppercase tracking-wider text-neutral-500 dark:text-neutral-400 mb-4 transition-colors duration-300">
+                {t('experience.devopsTools')}
               </h3>
               <div className="flex flex-wrap gap-2">
                 {devopsSkills.map((skill) => (
                   <span
                     key={skill}
-                    className="px-3 py-1.5 bg-gray-50 text-gray-700 text-sm rounded border border-gray-200 hover:border-blue-600 hover:text-blue-600 transition-colors cursor-default"
+                    className="px-3 py-1.5 bg-neutral-50 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-300 text-sm rounded border border-neutral-200 dark:border-neutral-600 hover:border-primary hover:text-primary dark:hover:text-primary transition-colors cursor-default"
                   >
                     {skill}
                   </span>
@@ -204,9 +206,9 @@ const Experience = () => {
           </div>
 
           {/* Certifications */}
-          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-              <span className="text-2xl">✓</span> Certifications
+          <div className="bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl p-6 shadow-sm transition-colors duration-300">
+            <h2 className="text-xl font-semibold text-neutral-900 dark:text-white mb-6 flex items-center gap-2 transition-colors duration-300">
+              <span className="text-2xl">✓</span> {t('experience.certifications')}
             </h2>
             <div className="grid grid-cols-2 gap-4">
               {certifications.map((cert, idx) => (
