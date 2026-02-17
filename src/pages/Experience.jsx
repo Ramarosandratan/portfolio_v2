@@ -6,11 +6,22 @@ import CertificationCard from '../components/CertificationCard';
 import SVGComponent from '../components/SVGComponent';
 import CertificationIconSVG from '../components/CertificationIconSVG';
 import ExperienceIconSVG from '../components/ExperienceIconSVG';
+import { usePageMeta } from '../context/usePageMeta';
+import { StructuredData, getBreadcrumbSchema } from '../context/StructuredData';
 
 const Experience = () => {
   const { t } = useThemeLanguage();
   const [activeTab, setActiveTab] = useState('work');
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  // SEO Meta Tags
+  usePageMeta({
+    title: 'Experience & Skills - Full Stack Developer Profile',
+    description: 'Explore my professional experience, technical skills, certifications, and work history as a full-stack developer. Over 5 years of expertise in web development.',
+    keywords: 'experience, skills, certifications, full-stack developer, work history, expertise',
+    ogImage: '/logo.svg',
+    ogUrl: 'https://portfolio.example.com/experience'
+  });
 
   const workExperienceKeys = [
     {
@@ -129,6 +140,10 @@ const Experience = () => {
 
   return (
     <div className="flex flex-col min-h-screen transition-colors duration-300" style={{ backgroundColor: 'var(--background)' }}>
+      <StructuredData data={getBreadcrumbSchema([
+        { name: 'Home', url: 'https://portfolio.example.com' },
+        { name: 'Experience', url: 'https://portfolio.example.com/experience' }
+      ])} />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full">
         {/* Enhanced Header with Gradient */}
         <div className="relative mb-16 scroll-fade-in">

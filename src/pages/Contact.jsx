@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useThemeLanguage } from '../context/useThemeLanguage';
+import { usePageMeta } from '../context/usePageMeta';
+import { StructuredData, getBreadcrumbSchema } from '../context/StructuredData';
 import mapBackground from '../assets/map-background.png';
 
 const Contact = () => {
@@ -13,6 +15,15 @@ const Contact = () => {
     });
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+
+    // SEO Meta Tags
+    usePageMeta({
+        title: 'Contact Me - Get in Touch for Web Development Projects',
+        description: 'Get in touch with me for web development inquiries, project discussions, or collaboration opportunities. Let\'s create something amazing together.',
+        keywords: 'contact, get in touch, web development, collaboration, inquiry, projects',
+        ogImage: '/logo.svg',
+        ogUrl: 'https://portfolio.example.com/contact'
+    });
 
     // Scroll animations
     useEffect(() => {
@@ -59,6 +70,10 @@ const Contact = () => {
 
     return (
         <div className="flex flex-col min-h-screen transition-colors duration-300" style={{ backgroundColor: 'var(--background)' }}>
+            <StructuredData data={getBreadcrumbSchema([
+                { name: 'Home', url: 'https://portfolio.example.com' },
+                { name: 'Contact', url: 'https://portfolio.example.com/contact' }
+            ])} />
             {/* Main Content Area */}
             <main className="flex-grow flex items-center justify-center pt-28 pb-16 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-6xl w-full">

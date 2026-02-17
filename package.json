@@ -1,14 +1,26 @@
 {
   "name": "portfolio_v2",
+  "description": "Modern SEO-optimized portfolio website built with React, Vite, and Tailwind CSS featuring dynamic translations, dark/light theme, and best practices for search engine optimization.",
+  "author": "Your Name",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "keywords": [
+    "portfolio",
+    "web-development",
+    "react",
+    "vite",
+    "tailwind",
+    "seo",
+    "i18n"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "translate": "node scripts/generateTranslations.js"
+    "translate": "node scripts/generateTranslations.js",
+    "generate:sitemap": "node scripts/generateSitemap.js"
   },
   "dependencies": {
     "lucide-react": "^0.564.0",

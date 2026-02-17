@@ -1,10 +1,21 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useThemeLanguage } from '../context/useThemeLanguage';
+import { usePageMeta } from '../context/usePageMeta';
+import { StructuredData, organizationSchema } from '../context/StructuredData';
 
 const Home = () => {
     const { t } = useThemeLanguage();
     const [showScrollTop, setShowScrollTop] = useState(false);
+
+    // SEO Meta Tags
+    usePageMeta({
+        title: 'Professional Portfolio - Digital Solutions & Web Development',
+        description: 'Explore my portfolio featuring cutting-edge web development projects, technical expertise, and digital solutions. Full-stack developer with 5+ years of experience.',
+        keywords: 'portfolio, web developer, full-stack, React, Node.js, digital solutions, projects',
+        ogImage: '/logo.svg',
+        ogUrl: 'https://portfolio.example.com'
+    });
 
     // Scroll animations
     useEffect(() => {
@@ -23,6 +34,7 @@ const Home = () => {
 
     return (
         <>
+            <StructuredData data={organizationSchema} />
             {/* Main Hero Section */}
             <main className="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden transition-colors duration-300" style={{ backgroundColor: 'var(--background)' }}>
                 {/* Abstract Background Gradient Decoration */}

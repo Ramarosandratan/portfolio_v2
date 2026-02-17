@@ -19,6 +19,42 @@ Modern portfolio website built with React, Vite, and Tailwind CSS, featuring aut
 - **Icons**: Lucide React
 - **i18n**: Custom implementation with automatic translation generation
 
+## 🚀 SEO & Search Engine Optimization
+
+This portfolio includes comprehensive SEO optimizations:
+
+### ✅ Built-in SEO Features
+
+- **Meta Tags**: Optimized titles, descriptions, and keywords per page
+- **Open Graph**: Social media sharing optimization
+- **Twitter Cards**: Enhanced sharing on X/Twitter
+- **Structured Data**: JSON-LD schemas for better indexing
+- **XML Sitemap**: Automatic sitemap generation
+- **Robots.txt**: Crawler configuration
+- **Breadcrumbs**: Enhanced navigation and SEO
+- **Dynamic Meta Management**: `usePageMeta` hook for page-specific metadata
+
+### 📝 SEO Configuration
+
+For complete SEO setup instructions, see [SEO_GUIDE.md](./SEO_GUIDE.md)
+
+#### Quick Setup:
+
+1. Replace `portfolio.example.com` with your actual domain
+2. Update social media profiles in `src/context/StructuredData.jsx`
+3. Update your personal info in the schema
+4. Generate sitemap: `npm run generate:sitemap`
+5. Submit to Google Search Console
+
+### 📊 Files Included
+
+- `public/robots.txt` - Search engine crawler rules
+- `public/sitemap.xml` - Website structure for indexing
+- `public/.htaccess` - Server configuration for caching & compression
+- `src/context/usePageMeta.js` - Meta tag management hook
+- `src/context/StructuredData.jsx` - JSON-LD structured data
+
+
 ## Translation System
 
 This project features an **automatic translation system** for project data that doesn't require storing translations in i18n files manually.
