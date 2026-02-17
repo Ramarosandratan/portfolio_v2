@@ -1,8 +1,29 @@
 import { useState, useEffect } from 'react';
+import emailjs from 'emailjs-com';
 import { useThemeLanguage } from '../context/useThemeLanguage';
 import { usePageMeta } from '../context/usePageMeta';
 import { StructuredData, getBreadcrumbSchema } from '../context/StructuredData';
 import mapBackground from '../assets/map-background.png';
+
+// Initialize EmailJS
+const initializeEmailJS = () => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    
+    if (!publicKey || publicKey === 'YOUR_PUBLIC_KEY_HERE') {
+        return false;
+    }
+    
+    try {
+        emailjs.init(publicKey);
+        return true;
+    } catch (error) {
+        return false;
+    }
+};
+
+initializeEmailJS();
 
 const Contact = () => {
     const { t } = useThemeLanguage();
@@ -15,6 +36,8 @@ const Contact = () => {
     });
 
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     // SEO Meta Tags
     usePageMeta({
@@ -53,15 +76,84 @@ const Contact = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        // Simulate form submission
-        setTimeout(() => {
-            setIsSubmitted(true);
-            setFormData({ name: '', email: '', subject: '', message: '' });
-            setTimeout(() => setIsSubmitted(false), 5000);
-        }, 1000);
+        
+        // Reset error message
+        setErrorMessage('');
+        
+        // Check if EmailJS is properly configured
+        const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+        const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        
+        if (!publicKey || publicKey === 'YOUR_PUBLIC_KEY_HERE') {
+            setErrorMessage('Email service not configured. Please check your .env file.');
+            return;
+        }
+        
+        if (!serviceId || serviceId === 'YOUR_SERVICE_ID') {
+            setErrorMessage('Email service not configured. Please check your .env file.');
+            return;
+        }
+        
+        if (!templateId || templateId === 'YOUR_TEMPLATE_ID') {
+            setErrorMessage('Email service not configured. Please check your .env file.');
+            return;
+        }
+        
+        // Validate form
+        if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+            setErrorMessage('Please fill in all required fields');
+            return;
+        }
+
+        // Validate email format
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            setErrorMessage('Please enter a valid email address');
+            return;
+        }
+
+        setIsLoading(true);
+
+        try {
+            const templateParams = {
+                to_email: 'ramarosandratana@hotmail.com', // Your email address
+                from_name: formData.name,
+                from_email: formData.email,
+                subject: formData.subject || 'No subject provided',
+                message: formData.message
+            };
+
+            // Send email using EmailJS
+            const response = await emailjs.send(
+                serviceId,
+                templateId,
+                templateParams
+            );
+
+            if (response.status === 200) {
+                setIsSubmitted(true);
+                setFormData({ name: '', email: '', subject: '', message: '' });
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => setIsSubmitted(false), 5000);
+            }
+        } catch (error) {
+            // More specific error messages based on error type
+            if (error.status === 400) {
+                setErrorMessage('Invalid email configuration. Please verify your EmailJS credentials in the .env file.');
+            } else if (error.status === 401) {
+                setErrorMessage('Unauthorized. Please check your EmailJS Public Key.');
+            } else if (error.status === 403) {
+                setErrorMessage('Access denied. Please check your EmailJS Service ID and Template ID.');
+            } else {
+                setErrorMessage(`Failed to send email: ${error.text || error.message}. Please try again.`);
+            }
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const scrollToTop = () => {
@@ -299,6 +391,14 @@ const Contact = () => {
                                         <p className="mt-2 text-sm text-right transition-colors duration-300" style={{ color: formData.message.length > 450 ? 'var(--accent)' : 'var(--text-muted)' }}>{formData.message.length}/500 characters</p>
                                     </div>
 
+                                    {/* Error Messages */}
+                                    {errorMessage && (
+                                        <div className="flex items-center p-4 rounded-lg transition-all duration-300 animate-pulse" style={{ backgroundColor: 'rgb(from #ef4444 r g b / 0.1)', borderLeft: '4px solid #ef4444' }}>
+                                            <span className="material-icons text-base mr-2" style={{ color: '#ef4444' }}>error</span>
+                                            <p className="text-sm font-medium" style={{ color: '#ef4444' }}>{errorMessage}</p>
+                                        </div>
+                                    )}
+
                                     {/* Form Actions */}
                                     <div className="flex items-center justify-between pt-2">
                                         {/* Success Message */}
@@ -311,14 +411,24 @@ const Contact = () => {
                                         <div className="flex-grow"></div> {/* Spacer */}
                                         <button
                                             type="submit"
-                                            className="inline-flex justify-center items-center py-3 px-8 shadow-lg text-sm font-semibold rounded-xl text-white transition-all hover:scale-105"
+                                            disabled={isLoading}
+                                            className="inline-flex justify-center items-center py-3 px-8 shadow-lg text-sm font-semibold rounded-xl text-white transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                                             style={{
                                                 backgroundColor: 'var(--accent)',
                                                 boxShadow: '0 4px 20px rgb(from var(--accent) r g b / 0.3)'
                                             }}
                                         >
-                                            {t('contact.sendButton')}
-                                            <span className="material-icons ml-2 text-lg">send</span>
+                                            {isLoading ? (
+                                                <>
+                                                    <span className="material-icons mr-2 text-lg animate-spin">mail</span>
+                                                    Sending...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    {t('contact.sendButton')}
+                                                    <span className="material-icons ml-2 text-lg">send</span>
+                                                </>
+                                            )}
                                         </button>
                                     </div>
                                 </form>
