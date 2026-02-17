@@ -1,7 +1,7 @@
 export const CertificationCard = ({ title, subtitle, issued, icon: Icon }) => {
   return (
     <div
-      className="p-4 border hover:border-[color:var(--accent)] transition-colors duration-300 flex flex-col items-center text-center"
+      className="p-4 border hover:border-[color:var(--accent)] transition-all duration-300 flex flex-col items-center text-center hover-lift"
       style={{
         backgroundColor: 'var(--surface)',
         borderColor: 'var(--border)',
