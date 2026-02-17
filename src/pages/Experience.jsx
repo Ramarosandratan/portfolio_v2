@@ -1,53 +1,76 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useThemeLanguage } from '../context/useThemeLanguage';
 import TimelineItem from '../components/TimelineItem';
 import SkillBar from '../components/SkillBar';
 import CertificationCard from '../components/CertificationCard';
+import SVGComponent from '../components/SVGComponent';
+import CertificationIconSVG from '../components/CertificationIconSVG';
+import ExperienceIconSVG from '../components/ExperienceIconSVG';
 
 const Experience = () => {
+  const { t } = useThemeLanguage();
   const [activeTab, setActiveTab] = useState('work');
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-  const workExperience = [
+  const workExperienceKeys = [
     {
-      title: "Senior Full Stack Engineer",
-      company: "TechFlow Systems",
-      period: "2021 - Present",
-      description: [
-        "Architected and led the migration of a legacy monolithic application to a microservices architecture using Node.js and Docker.",
-        "Improved API response times by 40% through aggressive caching strategies with Redis and query optimization.",
-        "Mentored 3 junior developers, conducting code reviews and weekly pair programming sessions."
-      ],
-      skills: ["React", "Node.js", "AWS"]
+      titleKey: "experience.seniorFullStack",
+      companyKey: "experience.techFlowSystems",
+      periodKey: "experience.techFlowPeriod",
+      descriptionKeys: ["experience.techFlowDesc1", "experience.techFlowDesc2"],
+      skills: ["Angular", "Java (Quarkus/Kogito)", "BPMN 2.0", "PostgreSQL", "Git"]
     },
     {
-      title: "Frontend Developer",
-      company: "Creative Pulse Agency",
-      period: "2019 - 2021",
-      description: [
-        "Developed high-fidelity interactive UIs for e-commerce clients using Vue.js and Nuxt.",
-        "Implemented responsive designs that increased mobile conversion rates by 25% across key client sites.",
-        "Collaborated closely with UX designers to establish a reusable component library."
-      ],
-      skills: ["Vue.js", "Nuxt", "CSS"]
+      titleKey: "experience.frontendDeveloper",
+      companyKey: "experience.creativePulseAgency",
+      periodKey: "experience.creativePulsePeriod",
+      descriptionKeys: ["experience.creativePulseDesc1", "experience.creativePulseDesc2"],
+      skills: ["Retool", "Supabase"]
     },
     {
-      title: "Junior Web Developer",
-      company: "StartUp Inc.",
-      period: "2018 - 2019",
-      description: "Assisted in the development of internal tools using PHP and Laravel. Responsible for bug fixing, writing unit tests, and maintaining documentation for the backend API.",
-      skills: ["PHP", "Laravel", "MySQL"]
+      titleKey: "experience.juniorWebDeveloper",
+      companyKey: "experience.startupInc",
+      periodKey: "experience.startupPeriod",
+      descriptionKeys: ["experience.startupDesc"],
+      skills: ["Gestion d'équipe", "planification", "relation client"]
     }
   ];
 
-  const educationExperience = [
+  const educationExperienceKeys = [
     {
-      title: "Bachelor of Science in Computer Science",
-      company: "Tech University",
-      period: "2014 - 2018",
-      description: "Specialized in Software Engineering with emphasis on Full Stack Development and Cloud Architecture.",
+      titleKey: "experience.bachelorCS",
+      companyKey: "experience.techUniversity",
+      periodKey: "experience.techUniversityPeriod",
+      descriptionKey: "experience.techUniversityDesc",
+      skills: [],
+      isEducation: true
+    },
+    {
+      titleKey: "experience.highSchoolDiploma",
+      companyKey: "experience.lpaSchool",
+      periodKey: "experience.lpaSchoolPeriod",
+      descriptionKey: "experience.lpaSchoolDesc",
       skills: [],
       isEducation: true
     }
   ];
+
+  const workExperience = workExperienceKeys.map(item => ({
+    title: t(item.titleKey),
+    company: t(item.companyKey),
+    period: t(item.periodKey),
+    description: item.descriptionKeys.map(key => t(key)),
+    skills: item.skills
+  }));
+
+  const educationExperience = educationExperienceKeys.map(item => ({
+    title: t(item.titleKey),
+    company: t(item.companyKey),
+    period: t(item.periodKey),
+    description: t(item.descriptionKey),
+    skills: item.skills,
+    isEducation: item.isEducation
+  }));
 
   const frontendSkills = [
     { name: "React / Next.js", percentage: 95 },
@@ -68,161 +91,243 @@ const Experience = () => {
       title: "AWS Certified",
       subtitle: "Solutions Architect",
       issued: "2022",
-      gradientFrom: "from-orange-400",
-      gradientTo: "to-yellow-500",
       icon: "☁️"
     },
     {
       title: "CKA",
       subtitle: "Kubernetes Admin",
       issued: "2023",
-      gradientFrom: "from-blue-500",
-      gradientTo: "to-cyan-400",
       icon: "⚓"
     }
   ];
 
   const displayExperience = activeTab === 'work' ? workExperience : educationExperience;
 
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      {/* Header */}
-      <div className="mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Experience &amp; Skills
-        </h1>
-        <p className="text-gray-600 max-w-2xl text-lg">
-          My professional journey through software engineering and the technical arsenal I've built along the way.
-        </p>
-      </div>
+  // Scroll animations
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-        {/* Left Column: Timeline (7 cols) */}
-        <div className="lg:col-span-7 space-y-8">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
-              <span className="text-2xl">📋</span> Professional History
-            </h2>
-            
-            {/* Toggle Switch */}
-            <div className="bg-gray-200 p-1 rounded-lg inline-flex">
-              <button 
-                onClick={() => setActiveTab('work')}
-                className={`px-3 py-1 rounded text-xs font-medium transition-all ${
-                  activeTab === 'work'
-                    ? 'bg-white shadow-sm text-gray-900'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                Work
-              </button>
-              <button 
-                onClick={() => setActiveTab('education')}
-                className={`px-3 py-1 rounded text-xs font-medium transition-all ${
-                  activeTab === 'education'
-                    ? 'bg-white shadow-sm text-gray-900'
-                    : 'text-gray-500 hover:text-gray-700'
-                }`}
-              >
-                Education
-              </button>
-            </div>
+      const elements = document.querySelectorAll('.scroll-fade-in');
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight - 100;
+        if (isVisible) {
+          el.classList.add('visible');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen transition-colors duration-300" style={{ backgroundColor: 'var(--background)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-16 w-full">
+        {/* Enhanced Header with Gradient */}
+        <div className="relative mb-16 scroll-fade-in">
+          {/* Gradient background */}
+          <div className="absolute -inset-4 pointer-events-none opacity-20">
+            <div className="absolute inset-0" style={{
+              background: `radial-gradient(circle at 10% 20%, rgb(from var(--accent) r g b / 0.2), transparent 40%)`
+            }}></div>
           </div>
 
-          {/* Timeline Container */}
-          <div className="relative pl-8 border-l-2 border-gray-200 space-y-12">
-            {displayExperience.map((item, idx) => (
-              <TimelineItem
-                key={idx}
-                title={item.title}
-                company={item.company}
-                period={item.period}
-                description={item.description}
-                skills={item.skills}
-                isEducation={item.isEducation}
-              />
-            ))}
+          <div className="relative">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+              {t('experience.title')}
+            </h1>
+            <p className="max-w-2xl text-xl transition-colors duration-300" style={{ color: 'var(--text-secondary)' }}>
+              {t('experience.subtitle')}
+            </p>
           </div>
         </div>
 
-        {/* Right Column: Skills & Certifications (5 cols) */}
-        <div className="lg:col-span-5 space-y-8">
-          {/* Skills Card */}
-          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-              <span className="text-2xl">💻</span> Technical Proficiency
-            </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          {/* Left Column: Timeline (7 cols) */}
+          <div className="lg:col-span-7 space-y-8">
+            <div className="scroll-fade-in flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold flex items-center gap-3 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+                <ExperienceIconSVG style={{ width: '28px', height: '28px' }} />
+                {activeTab === 'work' ? t('experience.workExperience') : t('experience.education')}
+              </h2>
 
-            {/* Frontend Section */}
-            <div className="mb-8">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-                Frontend
-              </h3>
-              <div className="space-y-4">
-                {frontendSkills.map((skill) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    percentage={skill.percentage}
+              {/* Enhanced Toggle Switch */}
+              <div className="p-1.5 rounded-xl inline-flex border shadow-md transition-all"
+                style={{
+                  backgroundColor: 'var(--surface-secondary)',
+                  borderColor: 'var(--border)'
+                }}>
+                <button
+                  onClick={() => setActiveTab('work')}
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${activeTab === 'work'
+                      ? 'shadow-md'
+                      : 'btn-hover-shadow'
+                    }`}
+                  style={
+                    activeTab === 'work'
+                      ? {
+                        backgroundColor: 'var(--accent)',
+                        color: 'white',
+                        boxShadow: '0 4px 15px rgb(from var(--accent) r g b / 0.3)'
+                      }
+                      : { color: 'var(--text-secondary)' }
+                  }
+                >
+                  {t('experience.workExperience')}
+                </button>
+                <button
+                  onClick={() => setActiveTab('education')}
+                  className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all ${activeTab === 'education'
+                      ? 'shadow-md'
+                      : 'btn-hover-shadow'
+                    }`}
+                  style={
+                    activeTab === 'education'
+                      ? {
+                        backgroundColor: 'var(--accent)',
+                        color: 'white',
+                        boxShadow: '0 4px 15px rgb(from var(--accent) r g b / 0.3)'
+                      }
+                      : { color: 'var(--text-secondary)' }
+                  }
+                >
+                  {t('experience.education')}
+                </button>
+              </div>
+            </div>
+
+            {/* Enhanced Timeline Container */}
+            <div className="relative pl-8 border-l-2 space-y-12 transition-colors duration-300" style={{ borderColor: 'var(--border)' }}>
+              {displayExperience.map((item, idx) => (
+                <div key={idx} className="scroll-fade-in" style={{ animationDelay: `${idx * 0.1}s` }}>
+                  <TimelineItem
+                    title={item.title}
+                    company={item.company}
+                    period={item.period}
+                    description={item.description}
+                    skills={item.skills}
+                    isEducation={item.isEducation}
                   />
-                ))}
-              </div>
-            </div>
-
-            {/* Backend Section */}
-            <div className="mb-8">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-                Backend
-              </h3>
-              <div className="space-y-4">
-                {backendSkills.map((skill) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    percentage={skill.percentage}
-                  />
-                ))}
-              </div>
-            </div>
-
-            {/* DevOps Section */}
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-4">
-                DevOps &amp; Tools
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {devopsSkills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1.5 bg-gray-50 text-gray-700 text-sm rounded border border-gray-200 hover:border-blue-600 hover:text-blue-600 transition-colors cursor-default"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Certifications */}
-          <div className="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6 flex items-center gap-2">
-              <span className="text-2xl">✓</span> Certifications
-            </h2>
-            <div className="grid grid-cols-2 gap-4">
-              {certifications.map((cert, idx) => (
-                <CertificationCard
-                  key={idx}
-                  title={cert.title}
-                  subtitle={cert.subtitle}
-                  issued={cert.issued}
-                  gradientFrom={cert.gradientFrom}
-                  gradientTo={cert.gradientTo}
-                />
+                </div>
               ))}
             </div>
           </div>
+
+          {/* Right Column: Skills & Certifications (5 cols) */}
+          <div className="lg:col-span-5 space-y-8">
+            {/* Enhanced Skills Card */}
+            <div className="scroll-fade-in hover-lift border rounded-2xl p-8 shadow-lg transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--surface)',
+                borderColor: 'var(--border)'
+              }}>
+              <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+                <SVGComponent style={{ width: '28px', height: '28px' }} /> {t('experience.skills')}
+              </h2>
+
+              {/* Frontend Section */}
+              <div className="mb-10">
+                <h3 className="text-xs font-bold uppercase tracking-wider mb-5 flex items-center gap-2 transition-colors duration-300" style={{ color: 'var(--accent)' }}>
+                  <span className="material-icons-round text-sm">web</span>
+                  {t('experience.frontendSkills')}
+                </h3>
+                <div className="space-y-5">
+                  {frontendSkills.map((skill) => (
+                    <SkillBar
+                      key={skill.name}
+                      name={skill.name}
+                      percentage={skill.percentage}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Backend Section */}
+              <div className="mb-10">
+                <h3 className="text-xs font-bold uppercase tracking-wider mb-5 flex items-center gap-2 transition-colors duration-300" style={{ color: 'var(--accent)' }}>
+                  <span className="material-icons-round text-sm">storage</span>
+                  {t('experience.backendSkills')}
+                </h3>
+                <div className="space-y-5">
+                  {backendSkills.map((skill) => (
+                    <SkillBar
+                      key={skill.name}
+                      name={skill.name}
+                      percentage={skill.percentage}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* DevOps Section */}
+              <div>
+                <h3 className="text-xs font-bold uppercase tracking-wider mb-5 flex items-center gap-2 transition-colors duration-300" style={{ color: 'var(--accent)' }}>
+                  <span className="material-icons-round text-sm">settings</span>
+                  {t('experience.devopsTools')}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {devopsSkills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-4 py-2 text-sm font-medium rounded-lg border transition-all cursor-default hover:scale-105 hover:shadow-md"
+                      style={{
+                        backgroundColor: 'rgb(from var(--accent) r g b / 0.1)',
+                        color: 'var(--accent)',
+                        borderColor: 'rgb(from var(--accent) r g b / 0.3)'
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Enhanced Certifications */}
+            <div className="scroll-fade-in hover-lift border rounded-2xl p-8 shadow-lg transition-all duration-300"
+              style={{
+                backgroundColor: 'var(--surface)',
+                borderColor: 'var(--border)'
+              }}>
+              <h2 className="text-2xl font-bold mb-8 flex items-center gap-3 transition-colors duration-300" style={{ color: 'var(--text-primary)' }}>
+                <CertificationIconSVG style={{ width: '28px', height: '28px' }} /> {t('experience.certifications')}
+              </h2>
+              <div className="grid grid-cols-2 gap-4">
+                {certifications.map((cert, idx) => (
+                  <CertificationCard
+                    key={idx}
+                    title={cert.title}
+                    subtitle={cert.subtitle}
+                    issued={cert.issued}
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Floating Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-24 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 z-50 animate-fade-in-scale"
+          style={{
+            backgroundColor: 'var(--accent)',
+            color: 'white',
+            boxShadow: '0 8px 30px rgb(from var(--accent) r g b / 0.4)'
+          }}
+        >
+          <span className="material-icons-round text-2xl">arrow_upward</span>
+        </button>
+      )}
     </div>
   );
 };

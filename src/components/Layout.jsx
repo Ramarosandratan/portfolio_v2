@@ -1,14 +1,16 @@
 import Navbar from './Navbar';
 import Footer from './Footer';
+import SettingsButton from './SettingsButton';
 
 const Layout = ({ children }) => {
     return (
-        <div className="flex flex-col min-h-screen font-sans text-gray-900">
+        <div className="flex flex-col min-h-screen font-sans transition-colors duration-300" style={{backgroundColor: 'var(--background)', color: 'var(--text-primary)'}}>
             <Navbar />
-            <main className="flex-grow bg-gray-50">
+            <main className="flex-grow transition-colors duration-300" style={{backgroundColor: 'var(--background)'}}>
                 {children}
             </main>
             <Footer />
+            <SettingsButton />
         </div>
     );
 };
