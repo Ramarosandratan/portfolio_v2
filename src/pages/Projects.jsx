@@ -6,6 +6,7 @@ import { useTranslatedProjects } from '../hooks/useTranslatedProjects';
 const Projects = () => {
     const { t } = useThemeLanguage();
     const [filter, setFilter] = useState('all');
+    const [isFiltering, setIsFiltering] = useState(false);
     const [showScrollTop, setShowScrollTop] = useState(false);
 
     const filterOptions = [
@@ -46,6 +47,15 @@ const Projects = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const handleFilterChange = (nextFilter) => {
+        if (nextFilter === filter) {
+            return;
+        }
+        setIsFiltering(true);
+        setFilter(nextFilter);
+        window.setTimeout(() => setIsFiltering(false), 380);
+    };
+
     return (
         <div className="flex flex-col min-h-screen transition-colors duration-300" style={{ backgroundColor: 'var(--background)' }}>
             {/* Enhanced Header Section with Gradient */}
@@ -77,7 +87,7 @@ const Projects = () => {
                         {filterOptions.map(option => (
                             <button
                                 key={option.key}
-                                onClick={() => setFilter(option.key)}
+                                onClick={() => handleFilterChange(option.key)}
                                 className={`px-6 py-2.5 text-sm font-semibold rounded-lg transition-all ${filter === option.key
                                         ? "shadow-md"
                                         : "btn-hover-shadow"
@@ -102,11 +112,11 @@ const Projects = () => {
             {/* Main Content: Enhanced Project Grid */}
             <main className="flex-grow py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 projects-grid ${isFiltering ? 'is-filtering' : ''}`}>
                         {filteredProjects.map((project, index) => (
                             <article
                                 key={project.id}
-                                className="scroll-fade-in hover-lift group rounded-2xl overflow-hidden shadow-lg border flex flex-col h-full"
+                                className="scroll-fade-in hover-lift group rounded-2xl overflow-hidden shadow-lg border flex flex-col h-full project-card"
                                 style={{
                                     backgroundColor: 'var(--surface)',
                                     borderColor: 'var(--border)',
@@ -188,10 +198,11 @@ const Projects = () => {
 
                         {/* Enhanced Coming Soon Card */}
                         {filter === 'all' && (
-                            <article className="scroll-fade-in group rounded-2xl overflow-hidden border-2 border-dashed flex flex-col h-full items-center justify-center text-center p-10 transition-all hover:border-solid hover:scale-105"
+                            <article className="scroll-fade-in hover-press group rounded-2xl overflow-hidden border-2 border-dashed flex flex-col h-full items-center justify-center text-center p-10 project-card"
                                 style={{
                                     backgroundColor: 'var(--surface-secondary)',
                                     borderColor: 'var(--border)',
+                                    boxShadow: 'var(--shadow-soft)',
                                     animationDelay: `${filteredProjects.length * 0.1}s`
                                 }}>
                                 <div className="h-20 w-20 rounded-full flex items-center justify-center mb-6 transition-all group-hover:scale-110 animate-float"
@@ -217,7 +228,7 @@ const Projects = () => {
             {showScrollTop && (
                 <button
                     onClick={scrollToTop}
-                    className="fixed bottom-8 right-8 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 z-50 animate-fade-in-scale"
+                    className="fixed bottom-24 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 z-50 animate-fade-in-scale"
                     style={{
                         backgroundColor: 'var(--accent)',
                         color: 'white',

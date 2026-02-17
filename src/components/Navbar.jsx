@@ -31,10 +31,10 @@ const Navbar = () => {
                     {/* Desktop Menu */}
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-2">
-                            <NavLink to="/" className="relative font-medium px-4 py-2 text-sm transition-all duration-300 hover:scale-105 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-current before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100" style={linkStyle} end>{t('navbar.home')}</NavLink>
-                            <NavLink to="/projects" className="relative px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-current before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100" style={linkStyle}>{t('navbar.projects')}</NavLink>
-                            <NavLink to="/experience" className="relative px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-current before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100" style={linkStyle}>{t('navbar.experience')}</NavLink>
-                            <NavLink to="/contact" className="relative px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 before:content-[''] before:absolute before:bottom-0 before:left-0 before:w-full before:h-0.5 before:bg-current before:scale-x-0 before:transition-transform before:duration-300 hover:before:scale-x-100" style={linkStyle}>{t('navbar.contact')}</NavLink>
+                            <NavLink to="/" className="nav-link-premium px-4 py-2 text-sm font-medium" style={linkStyle} end>{t('navbar.home')}</NavLink>
+                            <NavLink to="/projects" className="nav-link-premium px-4 py-2 text-sm font-medium" style={linkStyle}>{t('navbar.projects')}</NavLink>
+                            <NavLink to="/experience" className="nav-link-premium px-4 py-2 text-sm font-medium" style={linkStyle}>{t('navbar.experience')}</NavLink>
+                            <NavLink to="/contact" className="nav-link-premium px-4 py-2 text-sm font-medium" style={linkStyle}>{t('navbar.contact')}</NavLink>
                         </div>
                     </div>
 
@@ -64,10 +64,10 @@ const Navbar = () => {
             {isOpen && (
                 <div className="md:hidden border-t transition-colors duration-300" style={{backgroundColor: 'var(--surface)', borderColor: 'var(--border)'}}>
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <NavLink to="/" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:translate-x-1 hover:shadow-sm" style={linkStyle} end>{t('navbar.home')}</NavLink>
-                        <NavLink to="/projects" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:translate-x-1 hover:shadow-sm" style={linkStyle}>{t('navbar.projects')}</NavLink>
-                        <NavLink to="/experience" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:translate-x-1 hover:shadow-sm" style={linkStyle}>{t('navbar.experience')}</NavLink>
-                        <NavLink to="/contact" onClick={() => setIsOpen(false)} className="block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:translate-x-1 hover:shadow-sm" style={linkStyle}>{t('navbar.contact')}</NavLink>
+                        <NavLink to="/" onClick={() => setIsOpen(false)} className="nav-link-premium block px-4 py-3 rounded-lg text-base font-medium" style={linkStyle} end>{t('navbar.home')}</NavLink>
+                        <NavLink to="/projects" onClick={() => setIsOpen(false)} className="nav-link-premium block px-4 py-3 rounded-lg text-base font-medium" style={linkStyle}>{t('navbar.projects')}</NavLink>
+                        <NavLink to="/experience" onClick={() => setIsOpen(false)} className="nav-link-premium block px-4 py-3 rounded-lg text-base font-medium" style={linkStyle}>{t('navbar.experience')}</NavLink>
+                        <NavLink to="/contact" onClick={() => setIsOpen(false)} className="nav-link-premium block px-4 py-3 rounded-lg text-base font-medium" style={linkStyle}>{t('navbar.contact')}</NavLink>
                         <Link to="/contact" onClick={() => setIsOpen(false)} className="text-white block px-4 py-3 rounded-lg text-base font-medium mt-4 text-center transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95" style={{backgroundColor: 'var(--accent)'}}>{t('navbar.hireMe')}</Link>
                     </div>
                 </div>

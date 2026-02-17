@@ -2,10 +2,10 @@ export const TimelineItem = ({ title, company, period, description, skills, isEd
   return (
     <div className="relative group">
       {/* Timeline dot */}
-      <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full border-4 group-hover:shadow-lg transition-shadow" style={{borderColor: 'var(--background)', backgroundColor: 'var(--accent)', boxShadow: 'var(--shadow-glow)'}}></div>
+      <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full border-4 group-hover:shadow-lg transition-shadow duration-300" style={{borderColor: 'var(--background)', backgroundColor: 'var(--accent)', boxShadow: 'var(--shadow-glow)'}}></div>
 
       {/* Card content */}
-      <div className="p-6 border rounded-xl transition-all duration-300 transform hover:-translate-y-1" style={{backgroundColor: 'var(--surface)', borderColor: 'var(--border)', boxShadow: '0 1px 3px 0 rgb(0 0 0 / 0.1)'}}>
+      <div className="p-6 border rounded-xl hover-lift hover:border-[color:var(--accent)] transition-all duration-300" style={{backgroundColor: 'var(--surface)', borderColor: 'var(--border)', boxShadow: 'var(--shadow-soft)'}}>
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-2 mb-4">
           <div>
             <h3 className="text-lg font-bold transition-colors" style={{color: 'var(--text-primary)'}}>
@@ -39,7 +39,7 @@ export const TimelineItem = ({ title, company, period, description, skills, isEd
             {skills.map((skill) => (
               <span 
                 key={skill}
-                className="px-2 py-1 text-xs rounded border transition-colors duration-300 hover:opacity-80"
+                className="px-2 py-1 text-xs rounded border transition-all duration-300 hover:scale-105 hover:opacity-90 hover:border-[color:var(--accent)]"
                 style={{backgroundColor: 'var(--surface-secondary)', color: 'var(--text-secondary)', borderColor: 'var(--border)'}}
               >
                 {skill}

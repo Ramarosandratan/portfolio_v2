@@ -190,7 +190,7 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
     @keyframes fadeInScale {
         from {
             opacity: 0;
-            transform: scale(0.9);
+            transform: scale(0.7);
         }
 
         to {
@@ -222,7 +222,6 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
     }
 
     @keyframes glow-pulse {
-
         0%,
         100% {
             box-shadow: 0 0 20px rgb(from var(--accent) r g b / 0.2);
@@ -230,6 +229,18 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
 
         50% {
             box-shadow: 0 0 30px rgb(from var(--accent) r g b / 0.4);
+        }
+    }
+
+    @keyframes cardAppear {
+        from {
+            opacity: 0;
+            transform: translateY(24px) scale(0.95);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
         }
     }
 
@@ -247,6 +258,10 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
 
     .animate-float {
         animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-card-appear {
+        animation: cardAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .glass-effect {
@@ -275,13 +290,21 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
     }
 
     .hover-lift {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                    box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    border-color 0.3s ease;
         box-shadow: var(--shadow-soft);
     }
 
     .hover-lift:hover {
-        transform: translateY(-12px);
-        box-shadow: var(--shadow-hover);
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px rgb(0 0 0 / 0.12), 
+                    0 0 30px rgb(from var(--accent) r g b / 0.15);
+    }
+
+    html.dark .hover-lift:hover {
+        box-shadow: 0 20px 40px rgb(0 0 0 / 0.4), 
+                    0 0 30px rgb(from var(--accent) r g b / 0.25);
     }
 
     .btn-hover-shadow {
@@ -297,15 +320,45 @@ html.dark .custom-scrollbar::-webkit-scrollbar-thumb {
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
     }
 
+    .hover-press {
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                    box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: var(--shadow-soft);
+    }
+
+    .hover-press:hover {
+        transform: scale(0.98);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), 
+                    inset 0 2px 4px rgba(0, 0, 0, 0.08);
+    }
+
+    html.dark .hover-press:hover {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 
+                    inset 0 2px 4px rgba(255, 255, 255, 0.08);
+    }
+
     .scroll-fade-in {
         opacity: 0;
         transform: translateY(20px);
-        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        transition: opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                    transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .scroll-fade-in.visible {
         opacity: 1;
         transform: translateY(0);
+    }
+
+    .projects-grid .project-card {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        transition: opacity 0.38s ease, transform 0.38s ease;
+        will-change: opacity, transform;
+    }
+
+    .projects-grid.is-filtering .project-card {
+        opacity: 0;
+        transform: translateY(18px) scale(0.98);
     }
 
     .sticky-cta {

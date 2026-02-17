@@ -1,7 +1,7 @@
 export const CertificationCard = ({ title, subtitle, issued, icon: Icon }) => {
   return (
     <div
-      className="p-4 border hover:border-[color:var(--accent)] transition-all duration-300 flex flex-col items-center text-center hover-lift"
+      className="p-4 border hover:border-[color:var(--accent)] transition-all duration-300 flex flex-col items-center text-center hover-lift group"
       style={{
         backgroundColor: 'var(--surface)',
         borderColor: 'var(--border)',
@@ -11,16 +11,16 @@ export const CertificationCard = ({ title, subtitle, issued, icon: Icon }) => {
     >
       {/* Icon/Badge */}
       <div
-        className="w-16 h-16 mb-3 rounded-full flex items-center justify-center"
+        className="w-16 h-16 mb-3 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
         style={{
           background: 'linear-gradient(to top right, var(--accent), var(--accent-hover))',
           boxShadow: 'var(--shadow-soft)'
         }}
       >
         {Icon ? (
-          <Icon className="text-white text-3xl" />
+          <Icon className="text-white text-3xl transition-transform duration-300" />
         ) : (
-          <span className="text-2xl">📜</span>
+          <span className="text-2xl transition-transform duration-300">📜</span>
         )}
       </div>
       
